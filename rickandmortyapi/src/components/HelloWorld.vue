@@ -1,6 +1,11 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <ul class="nav">
+      <li><a href="http://">Characters</a></li>
+      <li><a href="http://">Locations</a></li>
+      <li><a href="http://">Locations</a></li>
+    </ul>
   </div>
 </template>
 

@@ -1,0 +1,5 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  @include rem(gap, 10px);
+}

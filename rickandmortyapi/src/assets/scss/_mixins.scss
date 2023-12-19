@@ -1,0 +1,360 @@
+//stylelint-disable
+@use 'sass:math';
+
+////
+/// Mixins File
+/// @group _mixins.scss
+/// @author Lend Kelmendi
+////
+
+/*=====================================
+=            MEDIA QUERIES            =
+=====================================*/
+/// Media Query mixin for mobile devices 0 < 768
+///@author Lend Kelmendi
+///@content CSS blocks on the desired element or if used by itself you can play selectors inside
+///@output It outputs the typed mediaquery and its css blocks if used inside an element
+///@example
+/// input {
+///   font-size:32px;
+///   @include mobile {
+///     font-size:12px;
+///     }
+/// }
+//Breakpoints
+$extra-wide-screen: 1920px;
+$wide-screen: 1600px;
+$extra-large-screen: 1400px;
+$large-screen: 1200px;
+$small-screen: 1024px;
+$tablet-screen: 850px;
+$mini-tablet-screen: 540px;
+$mobile-screen: 480px;
+$small-mobile-screen: 400px;
+$small-mobile-screen2: 430px;
+// $mobile-lg: 450px;
+
+//Width beyond HD
+@mixin fixedWidth($width: null) {
+  @include wide-scr-min {
+    width: $width;
+  }
+}
+//Responsiveness max-width
+@mixin xl-wide-scr-max {
+  @media only screen and (max-width: $extra-wide-screen) {
+    @content;
+  }
+}
+@mixin wide-scr {
+  @media only screen and (max-width: $wide-screen) {
+    @content;
+  }
+}
+
+@mixin xl-scr-max {
+  @media only screen and (max-width: $extra-large-screen) {
+    @content;
+  }
+}
+
+@mixin lg-scr-max {
+  @media only screen and (max-width: $large-screen) {
+    @content;
+  }
+}
+
+@mixin sm-scr-max {
+  @media only screen and (max-width: $small-screen) {
+    @content;
+  }
+}
+
+@mixin tablet-scr-max {
+  @media only screen and (max-width: $tablet-screen) {
+    @content;
+  }
+}
+
+@mixin mini-tablet-scr-max {
+  @media only screen and (max-width: $mini-tablet-screen) {
+    @content;
+  }
+}
+
+@mixin mobile-scr-max {
+  @media only screen and (max-width: $mobile-screen) {
+    @content;
+  }
+}
+
+@mixin small-mobile-scr-max {
+  @media only screen and (max-width: $small-mobile-screen) {
+    @content;
+  }
+}
+@mixin small-mobile-scr2-max {
+  @media only screen and (max-width: $small-mobile-screen2) {
+    @content;
+  }
+}
+
+//Responsiveness min-width
+@mixin wide-scr-min {
+  @media only screen and (min-width: $extra-wide-screen) {
+    @content;
+  }
+}
+
+@mixin xl-scr-min {
+  @media only screen and (min-width: $extra-large-screen) {
+    @content;
+  }
+}
+
+@mixin lg-scr-min {
+  @media only screen and (min-width: $large-screen) {
+    @content;
+  }
+}
+
+@mixin sm-scr-min {
+  @media only screen and (min-width: $small-screen) {
+    @content;
+  }
+}
+
+@mixin tablet-scr-min {
+  @media only screen and (min-width: $tablet-screen) {
+    @content;
+  }
+}
+
+@mixin mini-tablet-scr-min {
+  @media only screen and (min-width: $mini-tablet-screen) {
+    @content;
+  }
+}
+
+@mixin mobile-scr-min {
+  @media only screen and (min-width: $mobile-screen) {
+    @content;
+  }
+}
+
+//Responsiveness max-height
+@mixin sm-desktop {
+  @media only screen and (max-height: 850px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media only screen and (max-width: 767px) {
+    @content;
+  }
+  @media only screen and (min-device-width: 360px) and (max-device-width: 820px) and (orientation: landscape) {
+    @content;
+  }
+}
+@mixin mobileLandscape {
+  @media only screen and (min-device-width: 360px) and (max-device-width: 820px) and (orientation: landscape) {
+    @content;
+  }
+}
+/// Media Query mixin for small tablets 768 < 991
+///@author Lend Kelmendi
+///@content CSS blocks on the desired element or if used by itself you can play selectors inside
+///@output It outputs the typed mediaquery and its css blocks if used inside an element
+///@example
+/// input {
+///   font-size:32px;
+///   @include tablet {
+///     font-size:12px;
+///     }
+/// }
+@mixin tablet-minus {
+  @media only screen and (max-width: 990px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: 768px) and (max-width: 990px) {
+    @content;
+  }
+}
+
+@mixin tablets {
+  @media only screen and (min-width: 768px) and (max-width: 1199px) {
+    @content;
+  }
+}
+/// Media Query mixin for big tablets 991 < 1199
+///@author Lend Kelmendi
+///@content CSS blocks on the desired element or if used by itself you can play selectors inside
+///@output It outputs the typed mediaquery and its css blocks if used inside an element
+///@example
+/// input {
+///   font-size:32px;
+///   @include tablet-big {
+///     font-size:12px;
+///     }
+/// }
+@mixin tablet-big {
+  @media only screen and (min-width: 991px) and (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin container-center {
+  display: flex;
+  @include lg-scr-max {
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+  }
+}
+/// Media Query mixin for desktop devices over 1200px  > 1200
+///@author Lend Kelmendi
+///@content CSS blocks on the desired element or if used by itself you can play selectors inside
+///@output It outputs the typed mediaquery and its css blocks if used inside an element
+///@example
+/// input {
+///   font-size:32px;
+///   @include desktop {
+///     font-size:42px;
+///     }
+/// }
+@mixin desktop {
+  @media only screen and (min-width: 1200px) {
+    @content;
+  }
+}
+@mixin desktopMax {
+  @media only screen and (max-width: 1200px) {
+    @content;
+  }
+}
+@mixin xl-scr-max {
+  @media only screen and (max-width: 1400px) {
+    @content;
+  }
+}
+@mixin small-screen {
+  @media only screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin smallest-scrn {
+  @media only screen and (max-width: 300px) {
+    @content;
+  }
+}
+
+/// Rem mixin to calculate rem based spacing from the base pixel of the html document
+/// Which can be set inside the mixin itself
+///@author Lend Kelmendi
+///@param {CSS Property} $property - any css property
+///@param {Value} $values - property value in pixels ONLY
+///@output Calculated style from px to rem together with px fallback
+///@example
+/// h1 {
+///   @include rem('font-size',16px);
+/// }
+/// //It outputs this: h1{font-size,16px; font-size:1rem;}
+@mixin rem($property, $values, $important: false) {
+  // Create a couple of empty lists as output buffers.
+  $base-font-size: 16px; // should be consistent with your html/body font-size
+  $px-values: ();
+  $rem-values: (); // Loop through the $values list
+  @each $value in $values {
+    // For each property value, if it's in rem or px, derive both rem and
+    // px values for it and add those to the end of the appropriate buffer.
+    // Ensure all pixel values are rounded to the nearest pixel.
+    @if $value==0 or $value==0px {
+      // 0 -- use it without a unit
+      $px-values: join($px-values, 0);
+      $rem-values: join($rem-values, 0);
+    } @else if
+      type-of($value)
+      ==number and not
+      unitless($value) and
+      (unit($value) ==px)
+    {
+      // px value given - calculate rem value from base-font-size
+      $new-rem-value: math.div($value, $base-font-size);
+      $px-values: join($px-values, round($value));
+      $rem-values: join($rem-values, #{$new-rem-value}rem);
+    } @else {
+      // unitless value - use those directly as rem and calculate the px-fallback
+      $px-values: join($px-values, round($value * $base-font-size));
+      $rem-values: join($rem-values, #{$value}rem);
+    }
+  } // output the converted rules
+  @if $important==true {
+    //#{$property}: $px-values !important;
+    #{$property}: $rem-values !important;
+  } @else {
+    //#{$property}: $px-values;
+    #{$property}: $rem-values;
+  }
+}
+$font-size: 16;
+
+@mixin auth-typography-title {
+  color: $medium-blue;
+  @include rem(font-size, 40px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+@mixin auth-typography-subtitle {
+  color: $medium-blue;
+  @include rem(font-size, 18px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+}
+@mixin error {
+  color: red;
+  @include rem(font-size, 13px);
+  @include rem(padding-left, 12px);
+  @include rem(margin-top, 7px);
+}
+@mixin flex-hr-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-justify-between {
+  display: flex;
+  justify-content: space-between;
+}
+@mixin flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin fluid-container {
+  @include rem(padding, 47px 34px 29px 34px);
+}
+
+@mixin laptop-scr {
+  @media only screen and (max-width: 1450px) {
+    @content;
+  }
+}
+
+@mixin tablet-max {
+  @media only screen and (max-width: 1360px) {
+    @content;
+  }
+}
+
+@mixin smallest-phone {
+  @media only screen and (max-width: 330px) {
+    @content;
+  }
+}
